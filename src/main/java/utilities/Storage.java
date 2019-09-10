@@ -29,7 +29,7 @@ public class Storage {
 	 */
 	public void saveMemory(TaskList tasks) throws DukeException {
 		ArrayList<Task> memory = tasks.getMemory();
-		String dir = System.getProperty("user.dir") + "/savedData.txt";
+		String dir = System.getProperty("user.dir") + "/src/main/java/savedData.txt";
 		BufferedWriter out;
 		try {
 			out = new BufferedWriter(new FileWriter(dir));
@@ -67,7 +67,7 @@ public class Storage {
 				String command = parser.getCommand(rawInput);
 				switch (command) {
 					case "done":
-						String doneTask = command.substring(5);
+						String doneTask = command.substring(4);
 						Task newDoneTask = parser.generateTask(doneTask);
 						taskList.add(newDoneTask);
 						taskList.get(taskList.size() - 1).markAsDone();

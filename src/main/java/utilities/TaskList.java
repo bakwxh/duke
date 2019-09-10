@@ -74,33 +74,8 @@ public class TaskList {
 		return memory.get(memory.size() - 1).showTask();
 	}
 
-	/**
-	 * Adds deadline task.
-	 * @param desc Description of deadline.
-	 * @param by By time of deadline.
-	 */
-	public void addDeadline(String desc, final Date by) {
-		Task newTask = new Deadline(desc, by);
-		memory.add(newTask);
-	}
-
-	/**
-	 * Adds event task.
-	 * @param desc Description of event.
-	 * @param at At time of event.
-	 */
-	public void addEvent(String desc, final Date at) {
-		Task newTask = new Event(desc, at);
-		memory.add(newTask);
-	}
-
-	/**
-	 * Adds to-do task.
-	 * @param desc Description of to-do.
-	 */
-	public void addTodo(String desc) {
-		Task newTask = new Todo(desc);
-		memory.add(newTask);
+	public void addTask(Task t) {
+		memory.add(t);
 	}
 
 	/**

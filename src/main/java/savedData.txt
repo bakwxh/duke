@@ -1,4 +1,3 @@
 todo die
 event die again /at 01/10/1001 1010
 deadline actually die /by 12/12/2112 2112
-todo revive

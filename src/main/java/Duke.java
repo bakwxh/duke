@@ -59,46 +59,48 @@ public class Duke {
 		}
 
 		String command = parser.getCommand(rawInput);
+    	String result = "";
 		try {
-			if (command.equals("bye")) {
-				return ui.printBye();
-			} else if (command.equals("list")) {
-				return ui.printList();
-			} else if (command.equals("find")) {
-				return ui.printFind(parser.processFind(rawInput));
-			} else if (command.equals("done")) {
-				int index = parser.processDone(rawInput);
-				tasks.doneTask(index);
-				storage.saveMemory(tasks);
-				return ui.printDone(index);
-			} else if (command.equals("delete")) {
-				Task deletedTask = tasks.deleteTask(parser.processDelete(rawInput));
-				storage.saveMemory(tasks);
-				return ui.printDeleted(deletedTask);
-			} else if (command.equals("todo")) {
-				tasks.addTodo(parser.todoDesc(rawInput));
-				storage.saveMemory(tasks);
-				return ui.printAdded();
-			} else if (command.equals("deadline")) {
-				tasks.addDeadline(parser.deadlineDesc(rawInput), parser.deadlineTime(rawInput));
-				storage.saveMemory(tasks);
-				return ui.printAdded();
-			} else if (command.equals("event")) {
-				tasks.addEvent(parser.eventDesc(rawInput), parser.eventTime(rawInput));
-				storage.saveMemory(tasks);
-				return ui.printAdded();
-			} else {
-				return ui.showLoadingError();
+			switch (command) {
+				case "bye":
+					result = ui.printBye();
+					break;
+				case "list":
+					result = ui.printList();
+					break;
+				case "find":
+					result = ui.printFind(parser.processFind(rawInput));
+					break;
+				case "done":
+					int index = parser.processDone(rawInput);
+					tasks.doneTask(index);
+					storage.saveMemory(tasks);
+					result = ui.printDone(index);
+					break;
+				case "delete":
+					Task deletedTask = tasks.deleteTask(parser.processDelete(rawInput));
+					storage.saveMemory(tasks);
+					result = ui.printDeleted(deletedTask);
+					break;
+				case "todo":
+				case "deadline":
+				case "event":
+					Task newTask = parser.generateTask(rawInput);
+					tasks.addTask(newTask);
+					storage.saveMemory(tasks);
+					result = ui.printAdded();
+					break;
+				case "none":
+					result = ui.showLoadingError();
+					break;
 			}
 		} catch (DukeException e) {
-			return ui.showException(e);
+			result = ui.showException(e);
 		}
+
+		return result;
     }
 
-//	public static void main(String[] args) {
-//		String dir = System.getProperty("user.dir") + "/savedData.txt";
-//		new Duke(dir).run();
-//	}
 
 	/**
 	 * You should have your own function to generate a response to user input.
