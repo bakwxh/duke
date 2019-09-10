@@ -26,6 +26,7 @@ public class Storage {
 	 */
 	public Storage(final String filePath) {
 		this.filePath = filePath;
+		assert filePath.isEmpty();
 	}
 
 	/**
