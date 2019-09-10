@@ -19,15 +19,15 @@ public class TaskList {
 	 */
 	private ArrayList<Task> memory;
 
-	/** Constructor.
+	/** Constructor for when there is previously saved data.
 	 * @param inputMemory Previous memory.
 	 */
-	public TaskList(final ArrayList<Task> inputMemory) {
+	public TaskList(ArrayList<Task> inputMemory) {
 		memory = inputMemory;
 	}
 
 	/**
-	 * Constructor.
+	 * Empty constructor for when there is no previous data.
 	 */
 	public TaskList() {
 		memory = new ArrayList<>();
@@ -35,6 +35,7 @@ public class TaskList {
 
 	/**
 	 * Lists out tasks in memory.
+	 * @return String of tasks stored.
 	 */
 	public String list() {
 		String result = "";
@@ -49,9 +50,10 @@ public class TaskList {
 	
 	/**
 	 * Lists tasks with keyword in them.
-	 * @param keyword Keyword.
+	 * @param keyword The keyword.
+	 * @return String of list of tasks with keyword contained.
 	 */
-	public String keywordList(final String keyword) {
+	public String keywordList(String keyword) {
 		String result = "";
 		int counter = 1;
 		for (Task t : memory) {
@@ -77,7 +79,7 @@ public class TaskList {
 	 * @param desc Description of deadline.
 	 * @param by By time of deadline.
 	 */
-	public void addDeadline(final String desc, final Date by) {
+	public void addDeadline(String desc, final Date by) {
 		Task newTask = new Deadline(desc, by);
 		memory.add(newTask);
 	}
@@ -87,7 +89,7 @@ public class TaskList {
 	 * @param desc Description of event.
 	 * @param at At time of event.
 	 */
-	public void addEvent(final String desc, final Date at) {
+	public void addEvent(String desc, final Date at) {
 		Task newTask = new Event(desc, at);
 		memory.add(newTask);
 	}
@@ -96,7 +98,7 @@ public class TaskList {
 	 * Adds to-do task.
 	 * @param desc Description of to-do.
 	 */
-	public void addTodo(final String desc) {
+	public void addTodo(String desc) {
 		Task newTask = new Todo(desc);
 		memory.add(newTask);
 	}
@@ -107,7 +109,7 @@ public class TaskList {
 	 * @return Deleted task.
 	 * @throws DukeException Exceptions.
 	 */
-	public Task deleteTask(final int index) throws DukeException {
+	public Task deleteTask(int index) throws DukeException {
 		try {
 			Task removed = memory.get(index);
 			memory.remove(index);
@@ -122,7 +124,7 @@ public class TaskList {
 	 * @param index Index of done task.
 	 * @throws DukeException Exception.
 	 */
-	public void doneTask(final int index) throws DukeException {
+	public void doneTask(int index) throws DukeException {
 		try {
 			memory.get(index).markAsDone();
 			System.out.println("   " + memory.get(index).showTask());

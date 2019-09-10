@@ -45,7 +45,11 @@ public class Duke {
     }
 
 	/**
-     * Main run method.
+	 * Main method of Duke. Takes in input from GUI, processes and
+	 * does the appropriate reaction to the tasklist, and generates duke's
+	 * response.
+     * @param rawInput User's raw input from GUI.
+	 * @return String if Duke's response.
      */
     public String run(String rawInput) {
     	try {

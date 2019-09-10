@@ -9,12 +9,13 @@ public class Todo extends Task {
 	 * Constructor.
 	 * @param description Description.
 	 */
-	public Todo(final String description) {
+	public Todo(String description) {
         super(description);
     }
 
     /**
-     * Shows task.
+     * Shows task type and task description.
+     * @return Display format of to-do.
      */
     @Override
     public String showTask() {
@@ -22,7 +23,9 @@ public class Todo extends Task {
     }
 
     /**
-     * Shows task as its saving format.
+     * Returns a string of the task in format
+     * for saving the task to a .txt file.
+     * @return Save format of to-do.
      */
     @Override
     public String toSave() {

@@ -11,40 +11,41 @@ import java.util.Date;
  */
 public class Event extends Task {
 	/**
-	 * At time.
+	 * The time the event is at.
 	 */
 	private Date at;
 
     /**
-     * Constructor.
+     * Constructs an event task with the given description,
+     * and the time the event is at.
      * @param description Description.
-     * @param at At time.
+     * @param at Time of event
      */
-    public Event(final String description, final Date at) {
+    public Event(String description, Date at) {
         super(description);
         this.at = at;
     }
 
     /**
-     * Shows task.
+     * Returns a string of the type of task,
+     * description, and time of the event.
+     * @return Display format of event.
      */
     @Override
     public String showTask() {
         return "[E]" + super.showTask() + " (at: " + at.toString() + ")";
     }
 
-    /**
-     * Returns at time.
-     * @return At time.
-     */
     public Date getAt() {
     	return this.at;
     }
 
     /**
-     * Shows task as its saving format.
-     * @return utilities.TaskList.tasks.Task as its saving format.
+     * Returns a string of the task in format
+     * for saving the task to a .txt file.
+     * @return Save format of event.
      */
+    @Override
     public String toSave() {
     	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HHmm");
     	String atString = sdf.format(at);

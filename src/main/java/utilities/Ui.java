@@ -7,7 +7,7 @@ import tasks.Task;
  * @version 0.1
  */
 public class Ui {
-	static String breakLine = "_____________________________________________________\n";
+	final static String breakLine = "_____________________________________________________\n";
 	/**
 	 * Pointer to tasklist object.
 	 */
@@ -24,9 +24,9 @@ public class Ui {
 
 	/**
 	 * Shows thrown exception.
-	 * @param e Exception
+	 * @param e Exception.
 	 */
-	public String showException(final Exception e) {
+	public String showException(Exception e) {
 		return breakLine
 				+ " ☹ OOPS!!! " + e.toString() + "\n"
 				+ breakLine;
@@ -71,7 +71,7 @@ public class Ui {
 	 * Sets pointer to Duke tasklist.
 	 * @param tasks Tasklist.
 	 */
-	public void setTaskList(final TaskList tasks) {
+	public void setTaskList(TaskList tasks) {
 		this.tasks = tasks;
 	}
 
@@ -79,7 +79,7 @@ public class Ui {
 	 * Shows done task.
 	 * @param index Index of done task.
 	 */
-	public String printDone(final int index) {
+	public String printDone(int index) {
 		return breakLine + " Nice! I've marked this task as done:\n   "
 				+ tasks.getMemory().get(index).showTask() + "\n"
 				+ breakLine + "\n";
@@ -89,7 +89,7 @@ public class Ui {
 	 * Shows deleted task.
 	 * @param t Deleted task.
 	 */
-	public String printDeleted(final Task t) {
+	public String printDeleted(Task t) {
 		String tasksLeft;
 		if (tasks.getMemory().size() == 1) {
 			tasksLeft = " Now you have 1 task in your list";
@@ -122,7 +122,7 @@ public class Ui {
 	 * Displays list of tasks containing keyword.
 	 * @param keyword Keyword.
 	 */
-	public String printFind(final String keyword) {
+	public String printFind(String keyword) {
 		return breakLine
 				+ " Here are the matching tasks in your list:\n"
 				+ tasks.keywordList(keyword) + "\n"

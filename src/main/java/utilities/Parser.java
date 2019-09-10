@@ -1,6 +1,10 @@
 package utilities;
 
 import exceptions.DukeException;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.Todo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,11 +16,11 @@ import java.util.Date;
  */
 public class Parser {
 	/**
-	 * Retrieve command from user input.
-	 * @param rawInput Raw input from user.
+	 * Retrieve command from full user input.
+	 * @param rawInput User's full from user.
 	 * @return The command found in rawInput.
 	 */
-	public String getCommand(final String rawInput) {
+	public String getCommand(String rawInput) {
 		if (rawInput.toLowerCase().equals("bye")) {
 			return "bye";
 		} else if (rawInput.toLowerCase().equals("list")) {
@@ -39,12 +43,40 @@ public class Parser {
 	}
 
 	/**
-	 * Process data from done command.
-	 * @param rawInput Raw user input.
+	 * Used for generating tasks when reading from save file only.
+	 * @param rawInput The input from the save file.
+	 * @return A task generated using rawInput.
+	 * @throws DukeException Exceptions thrown by methods used.
+	 */
+	public Task generateTask(String rawInput) throws DukeException {
+		Task result = null;
+		Parser parser = new Parser();
+		String taskType = parser.getCommand(rawInput);
+		switch (taskType) {
+			case "todo":
+				result = new Todo(parser.todoDesc(rawInput));
+				break;
+			case "deadline":
+				String deadlineDesc = parser.deadlineDesc(rawInput);
+				Date deadlineTime = parser.deadlineTime(rawInput);
+				result = new Deadline(deadlineDesc, deadlineTime);
+				break;
+			case "event":
+				String eventDesc = parser.eventDesc(rawInput);
+				Date eventTime = parser.eventTime(rawInput);
+				result = new Event(eventDesc, eventTime);
+				break;
+		}
+		return result;
+	}
+
+	/**
+	 * Process data from done command from full user input.
+	 * @param rawInput User's full input.
 	 * @return Index of task that is done.
 	 * @throws DukeException Exceptions.
 	 */
-	public int processDone(final String rawInput) throws DukeException {
+	public int processDone(String rawInput) throws DukeException {
 		try {
 			return Integer.parseInt(rawInput.split(" ")[1].trim()) - 1;
 		} catch (ArrayIndexOutOfBoundsException e) {
@@ -53,12 +85,12 @@ public class Parser {
 	}
 
 	/**
-	 * Process data from delete command.
-	 * @param rawInput Raw user input.
+	 * Process data from delete command from full user input.
+	 * @param rawInput User's full input.
 	 * @return Index of task that is deleted.
 	 * @throws DukeException Exceptions;
 	 */
-	public int processDelete(final String rawInput) throws DukeException {
+	public int processDelete(String rawInput) throws DukeException {
 		try {
 			return Integer.parseInt(rawInput.split(" ")[1].trim()) - 1;
 		} catch (ArrayIndexOutOfBoundsException e) {
@@ -67,12 +99,12 @@ public class Parser {
 	}
 
 	/**
-	 * Process description of deadline task.
-	 * @param rawInput Raw user input.
+	 * Process description of deadline task from full user input.
+	 * @param rawInput User's full input.
 	 * @return Description of deadline.
 	 * @throws DukeException Exceptions.
 	 */
-	public String deadlineDesc(final String rawInput) throws DukeException {
+	public String deadlineDesc(String rawInput) throws DukeException {
 		try {
 			return rawInput.substring(9).split("/by")[0].trim();
 		} catch (StringIndexOutOfBoundsException e) {
@@ -81,12 +113,12 @@ public class Parser {
 	}
 
 	/**
-	 * Process time of deadline task.
-	 * @param rawInput Raw user input.
+	 * Process time of deadline task from full user input.
+	 * @param rawInput User's full input.
 	 * @return Time of deadline.
 	 * @throws DukeException Exceptions.
 	 */
-	public Date deadlineTime(final String rawInput) throws DukeException {
+	public Date deadlineTime(String rawInput) throws DukeException {
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HHmm");
 			return sdf.parse(rawInput.substring(9).split("/by")[1].trim());
@@ -98,12 +130,12 @@ public class Parser {
 	}
 
 	/**
-	 * Process description of event task.
-	 * @param rawInput Raw user input.
+	 * Process description of event task from full user input.
+	 * @param rawInput User's full input.
 	 * @return Description of event.
 	 * @throws DukeException Exceptions.
 	 */
-	public String eventDesc(final String rawInput) throws DukeException {
+	public String eventDesc(String rawInput) throws DukeException {
 		try {
 			return rawInput.substring(5).split("/at")[0].trim();
 		} catch (StringIndexOutOfBoundsException e) {
@@ -112,12 +144,12 @@ public class Parser {
 	}
 
 	/**
-	 * Process time of event task.
-	 * @param rawInput Raw user input.
+	 * Process time of event task from full user input.
+	 * @param rawInput User's full input.
 	 * @return Time of event.
 	 * @throws DukeException Exceptions.
 	 */
-	public Date eventTime(final String rawInput) throws DukeException {
+	public Date eventTime(String rawInput) throws DukeException {
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HHmm");
 			return sdf.parse(rawInput.substring(9).split("/at")[1].trim());
@@ -129,12 +161,12 @@ public class Parser {
 	}
 
 	/**
-	 * Process description of to-do task.
-	 * @param rawInput Raw user input.
+	 * Process description of to-do task from full user input.
+	 * @param rawInput Full user input.
 	 * @return Description of to-do.
 	 * @throws DukeException Exceptions.
 	 */
-	public String todoDesc(final String rawInput) throws DukeException {
+	public String todoDesc(String rawInput) throws DukeException {
 		try {
 			return rawInput.substring(5).trim();
 		} catch (StringIndexOutOfBoundsException e) {
@@ -143,12 +175,12 @@ public class Parser {
 	}
 
 	/**
-	 * Returns keyword for find operation.
-	 * @param rawInput Raw user input.
-	 * @return Find keyword.
+	 * Returns keyword for find operation from user's full input.
+	 * @param rawInput User's full input.
+	 * @return Find command's keyword.
 	 * @throws DukeException Exceptions.
 	 */
-	public String processFind(final String rawInput) throws DukeException {
+	public String processFind(String rawInput) throws DukeException {
 		try {
 			return rawInput.substring(5).trim();
 		} catch (StringIndexOutOfBoundsException e) {

@@ -1,6 +1,1 @@
-todo die
-todo live
-deadline fly /by 10/10/2010 1010
-doneevent dive /at 12/12/1212 1212
-todo window cleaning
-todo listen in lecture
+todo try

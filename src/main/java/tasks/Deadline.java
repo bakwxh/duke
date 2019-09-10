@@ -9,22 +9,25 @@ import java.util.Date;
  */
 public class Deadline extends Task {
 	/**
-	 * By time of deadline.
+	 * The time the deadline must be completed by.
 	 */
 	private Date by;
 
     /**
-     * Constructor.
+     * Constructs a deadline task with the given description,
+     * and the time it must be completed by.
      * @param description Description.
-     * @param by By time.
+     * @param by Time to be completed by.
      */
-    public Deadline(final String description, final Date by) {
+    public Deadline(String description, Date by) {
         super(description);
         this.by = by;
     }
 
     /**
-     * Shows task.
+     * Returns a string of the type of task,
+     * description, as well as the deadline of the task.
+     * @return Display format of deadline.
      */
     @Override
     public String showTask() {
@@ -32,7 +35,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Shows task as its saving format.
+     * Returns a string of the task in format
+     * for saving the task to a .txt file.
+     * @return Save format of deadline.
      */
     @Override
     public String toSave() {
@@ -45,10 +50,6 @@ public class Deadline extends Task {
     	}
     }
 
-    /**
-     * Returns by time.
-     * @return By time.
-     */
     public Date getBy() {
     	return this.by;
     }

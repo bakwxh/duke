@@ -6,15 +6,17 @@ package exceptions;
  */
 public class DukeException extends Exception {
 	/**
-	 * Constructor.
+	 * Constructs a DukeException that prints with inputted message.
 	 * @param message Exception message.
 	 */
-	public DukeException(final String message) {
+	public DukeException(String message) {
 		super(message);
 	}
 
 	/**
-	 * Removes "exceptions.DukeException: " from start of message.
+	 * Removes "exceptions.DukeException: " from start of message,
+	 * and returns the message as a string.
+	 * @return Exception message as string.
 	 */
 	@Override public String toString() {
 		String temp = super.toString();
