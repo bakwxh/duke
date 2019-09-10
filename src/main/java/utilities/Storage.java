@@ -1,3 +1,11 @@
+package utilities;
+
+import exceptions.DukeException;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.Todo;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,7 +39,7 @@ public class Storage {
 
 	/**
 	 * Saves memory to file.
-	 * @param tasks TaskList.Task list.
+	 * @param tasks utilities.TaskList.tasks.Task list.
 	 * @throws DukeException Exceptions.
 	 */
 	public void saveMemory(final TaskList tasks) throws DukeException {

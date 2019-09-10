@@ -1,3 +1,5 @@
+package exceptions;
+
 /**
  * @author bakwxh
  * @version 0.1
@@ -12,7 +14,7 @@ public class DukeException extends Exception {
 	}
 
 	/**
-	 * Removes "DukeException: " from start of message.
+	 * Removes "exceptions.DukeException: " from start of message.
 	 */
 	@Override public String toString() {
 		String temp = super.toString();

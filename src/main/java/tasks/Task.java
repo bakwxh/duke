@@ -1,3 +1,5 @@
+package tasks;
+
 /**
  * @author bakwxh
  * @version 0.1
@@ -32,7 +34,7 @@ public class Task {
 
     /**
      * Shows task.
-     * @return TaskList.Task in string format.
+     * @return utilities.TaskList.tasks.Task in string format.
      */
     public String showTask() {
     	return "[" + getStatusIcon() + "] " + description;
@@ -47,7 +49,7 @@ public class Task {
 
     /**
      * Shows task as its saving format.
-     * @return TaskList.Task in string format for saving purposes.
+     * @return utilities.TaskList.tasks.Task in string format for saving purposes.
      */
     public String toSave() {
 		return null;

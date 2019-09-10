@@ -1,4 +1,4 @@
-/**
+package tasks; /**
  * @author bakwxh
  * @version 0.1
  */
@@ -43,7 +43,7 @@ public class Event extends Task {
 
     /**
      * Shows task as its saving format.
-     * @return TaskList.Task as its saving format.
+     * @return utilities.TaskList.tasks.Task as its saving format.
      */
     public String toSave() {
     	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HHmm");

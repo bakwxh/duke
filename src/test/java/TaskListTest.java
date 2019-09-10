@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import utilities.TaskList;
 
 /**
  * @author bakwxh
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Test;
  */
 class TaskListTest {
 	/**
-	 * TaskList.Task List Test.
+	 * utilities.TaskList.tasks.Task List Test.
 	 */
 	@Test
 	void test() {

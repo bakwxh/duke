@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import utilities.Parser;
 
 /**
  * @author bakwxh
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Test;
  */
 class ParserTest {
 	/**
-	 * Parser Test.
+	 * utilities.Parser Test.
 	 */
 	@Test
 	void test() {

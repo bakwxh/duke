@@ -1,3 +1,7 @@
+package utilities;
+
+import tasks.Task;
+
 /**
  * @author bakwxh
  * @version 0.1

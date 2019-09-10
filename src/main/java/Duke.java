@@ -1,4 +1,9 @@
-import java.util.Scanner;
+import exceptions.DukeException;
+import tasks.Task;
+import utilities.Parser;
+import utilities.Storage;
+import utilities.TaskList;
+import utilities.Ui;
 
 /**
  * @author bakwxh
@@ -6,11 +11,11 @@ import java.util.Scanner;
  */
 public class Duke {
 	/**
-	 * Storage.Storage object.
+	 * utilities.Storage.utilities.Storage object.
 	 */
 	private Storage storage;
 	/**
-	 * TaskList.Task list object.
+	 * utilities.TaskList.tasks.Task list object.
 	 */
 	private TaskList tasks;
 	/**
@@ -18,7 +23,7 @@ public class Duke {
 	 */
 	private Ui ui;
 	/**
-	 * Parser object.
+	 * utilities.Parser object.
 	 */
 	private Parser parser;
 	
